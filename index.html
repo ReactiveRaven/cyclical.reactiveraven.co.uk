@@ -1,0 +1,147 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                /*background: black;*/
+                /*color: white;*/
+                font-family: "Arial Rounded MT Bold", Helvetica, "Trebuchet MS", sans-serif;
+                text-align: center;
+                margin-left: 0;
+                margin-right: 0;
+                margin-top: 2.5em;
+                margin-bottom: 10em;
+            }
+
+            .clearfix {
+                clear: both;
+                height: auto;
+                alignment: center;
+            }
+
+            .halfbox {
+                width: 50%;
+                float: left;
+                position: relative;
+            }
+
+            .halfbox img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            .verticalcenter {
+                position: relative;
+                top: 50%;
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+            }
+
+            .cyan {
+                background: cyan;
+            }
+
+            .yellow {
+                background: yellow;
+            }
+
+            .lime {
+                background: lime;
+            }
+
+            .text {
+                padding: 1em;
+            }
+
+            .menu {
+                margin-bottom: 3em;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+            }
+
+            .menu a {
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+
+            #support {
+                clear: both;
+                padding-top: 3em;
+            }
+
+            @media (max-width: 500px) {
+                .halfbox {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Cyclical</h1>
+        <div class="menu">
+            <a href="#support">Support</a>
+        </div>
+        <div class="clearfix">
+            <div class="halfbox cyan">
+                <img src="taptocycle.png" />
+            </div>
+            <div class="halfbox">
+                <div class="verticalcenter text">
+                    Tapping cycles the rings, moving the outermost ring to the center and pushing the others out.
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="halfbox">
+                <div class="verticalcenter text">
+                    When three outer rings are the same, in any direction, or diangonally, they match and disappear
+                </div>
+            </div>
+            <div class="halfbox lime">
+                <img src="matchouterrings.png" />
+            </div>
+        </div>
+        <div class="clearfix">
+            <div class="halfbox yellow">
+                <img src="keepgoing.png" />
+            </div>
+            <div class="halfbox">
+                <div class="verticalcenter text">
+                    Keep going as long as you can, to increase your high score.
+                </div>
+            </div>
+        </div>
+
+        <div id="support">
+            <h2>Support</h2>
+
+            Contact me directly on <a href="mailto:davidmatthewgodfrey@gmail.com">davidmatthewgodfrey@gmail.com</a>
+        </div>
+
+        <script src="jquery-3.1.1.min.js"></script>
+        <script>
+            function updateSizes() {
+                $(".clearfix").each(function (index, element) {
+                    var $halfboxxen = $(element).find(".halfbox");
+                    $halfboxxen.css("height", "auto");
+                    var maxHeight = 0
+                    for (index = 0; index < $halfboxxen.length; index++) {
+                        var newHeight = $halfboxxen.eq(index).height()
+                        if (newHeight > maxHeight) {
+                            maxHeight = newHeight
+                        }
+                    }
+
+                    $halfboxxen.height(maxHeight)
+                })
+            }
+
+            $(window).resize(updateSizes);
+
+            $(document).ready(updateSizes);
+        </script>
+    </body>
+</html>
